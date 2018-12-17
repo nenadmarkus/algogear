@@ -19,4 +19,4 @@ The result is compared to the output of the function `numpy.fft.fft`.
 
 ## Inverse FFT
 
-You can implement IFFT via the provide FFT primitive as explained in <https://www.dsprelated.com/showarticle/800.php>.
+You can implement IFFT via the provided FFT primitive as explained in <https://www.dsprelated.com/showarticle/800.php>.
