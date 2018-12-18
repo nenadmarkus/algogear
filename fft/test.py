@@ -1,11 +1,10 @@
 import numpy
-
-#
-#
-#
-
 import os
 import ctypes
+
+#
+#
+#
 
 os.system('cc fft.c -fPIC -shared -o fft.lib.so')
 fftlib = ctypes.cdll.LoadLibrary('./fft.lib.so')

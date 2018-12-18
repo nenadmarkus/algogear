@@ -1,11 +1,10 @@
 import numpy
-
-#
-#
-#
-
 import os
 import ctypes
+
+#
+#
+#
 
 os.system('cc lup.c -fPIC -shared -o lup.lib.so')
 luplib = ctypes.cdll.LoadLibrary('./lup.lib.so')
