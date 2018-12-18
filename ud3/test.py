@@ -1,4 +1,3 @@
-import subprocess
 import numpy
 import os
 import ctypes
