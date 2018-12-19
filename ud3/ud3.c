@@ -1,14 +1,6 @@
 #include <stdint.h>
 
 /*
-	auxiliary stuff
-*/
-
-#define MAX(a, b) ((a)>(b)?(a):(b))
-#define MIN(a, b) ((a)<(b)?(a):(b))
-#define SQR(x) ((x)*(x))
-
-/*
 	multiply with carry PRNG
 */
 
@@ -47,7 +39,7 @@ uint32_t mwcrand()
 }
 
 /*
-	regression trees
+	ud3 code (learning + runtime)
 */
 
 float get_wmse(int find, float thresh, float targets[], int tdim, float features[], int fdim, double ws[], int inds[], int ninds)
@@ -113,14 +105,14 @@ float get_wmse(int find, float thresh, float targets[], int tdim, float features
 		if( features[inds[i]*fdim + find] < thresh )
 		{
 			for(j=0; j<tdim; ++j)
-				se += SQR(targets[inds[i]*tdim + j]-wtmean1[j]);
+				se += (targets[inds[i]*tdim + j]-wtmean1[j])*(targets[inds[i]*tdim + j]-wtmean1[j]);
 
 			wse1 += w*se;
 		}
 		else
 		{
 			for(j=0; j<tdim; ++j)
-				se += SQR(targets[inds[i]*tdim + j]-wtmean0[j]);
+				se += (targets[inds[i]*tdim + j]-wtmean0[j])*(targets[inds[i]*tdim + j]-wtmean0[j]);
 
 			wse0 += w*se;
 		}
@@ -291,10 +283,6 @@ int ud3_new(int32_t finds[], float threshs[], float preds[], int d, float target
 	//
 	return grow_subtree(finds, threshs, preds, 0, 0, d, targets, tdim, features, fdim, ws, inds, ninds, nrands);
 }
-
-/*
-
-*/
 
 int ud3_get_lut_index(int32_t finds[], float threshs[], int tdepth, float features[])
 {
