@@ -113,14 +113,6 @@ void learn_ensemble_with_gradient_boosting(float shrinkage, void* trees[], int n
 	}
 }
 
-void learn_random_forest(void* trees[], int ntrees, int depth, float targets[], int tdim, float features[], int fdim, int nsamples, int nrands)
-{
-	int i;
-
-	for(i=0; i<ntrees; ++i)
-		trees[i] = new_tree(1.0f/ntrees, depth, targets, 1, features, fdim, nsamples, 0, nrands);
-}
-
 void run_ensemble(void* trees[], int ntrees, float features[], int fdim, float predictions[], int pdim, int n)
 {
 	int i, j, k;
@@ -139,5 +131,16 @@ void run_ensemble(void* trees[], int ntrees, float features[], int fdim, float p
 				predictions[i*pdim + k] += preds[k];
 			}
 		}
+	}
+}
+
+void del_ensemble(void* trees[], int ntrees)
+{
+	int i;
+
+	for(i=0; i<ntrees; ++i)
+	{
+		del_tree(trees[i]);
+		trees[i] = 0;
 	}
 }
