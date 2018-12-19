@@ -47,7 +47,7 @@ trees = numpy.zeros(ntrees, dtype=numpy.int64)
 
 start = time.time()
 
-ud3lib.learn_ensemble_with_gradient_boosting(
+ud3lib.new_ensemble(
 	ctypes.c_float(0.25),
 	ctypes.c_void_p(trees.ctypes.data), ctypes.c_int(ntrees), ctypes.c_int(tdepth),
 	ctypes.c_void_p(targets.ctypes.data), ctypes.c_int(targets.shape[1]),
@@ -76,6 +76,10 @@ ud3lib.run_ensemble(
 
 print('* elapsed time (prediction): %d' % int(time.time() - start))
 
+ud3lib.del_ensemble(
+	ctypes.c_void_p(trees.ctypes.data), ctypes.c_int(ntrees)
+)
+
 #
 # display the results
 #
@@ -85,8 +89,8 @@ pred = predictions.reshape(nrows, ncols, nchns)
 
 show = numpy.zeros((orig.shape[0], 2*orig.shape[1], 3), dtype=numpy.float32)
 
-show[:, 0:512, :] = orig
-show[:, 512:, :]  = pred
+show[:, 0:orig.shape[1], :] = orig
+show[:, orig.shape[1]:, :]  = pred
 
 cv2.imshow('original | approximated', show)
 cv2.waitKey(0)

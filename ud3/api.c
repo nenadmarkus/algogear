@@ -95,7 +95,7 @@ int save_tree(void* tree, FILE* file)
 
 */
 
-void learn_ensemble_with_gradient_boosting(float shrinkage, void* trees[], int ntrees, int depth, float targets[], int tdim, float features[], int fdim, double weights[], int nsamples, int nrands)
+void new_ensemble(float shrinkage, void* trees[], int ntrees, int depth, float targets[], int tdim, float features[], int fdim, double weights[], int nsamples, int nrands)
 {
 	int i, j, k;
 
