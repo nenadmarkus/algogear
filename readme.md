@@ -1,4 +1,4 @@
-# Blitz
+# AlgoGear
 
 Currently, this repository contains the implementations of:
 
