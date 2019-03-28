@@ -17,7 +17,7 @@ In this experiment, we approximate a sample image with an ensemble of trees.
 
 The following command will download a suitable image:
 
-	wget https://tkv.io/posts/visualizing-audio-with-cppns/16.jpg -O img.jpg
+	wget https://tehnokv.com/posts/visualizing-audio-with-cppns/16.jpg -O img.jpg
 
 Now run the script `test.py` to see how an ensemble of 16 trees od depth 10 approximates this image:
 
