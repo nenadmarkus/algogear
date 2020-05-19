@@ -16,7 +16,7 @@ os.system('rm ud3.lib.so')
 # load the image
 #
 
-img = cv2.imread('img.jpg').astype(numpy.float32)/255.0
+img = cv2.imread('img.png').astype(numpy.float32)/255.0
 
 nrows = img.shape[0]
 ncols = img.shape[1]
